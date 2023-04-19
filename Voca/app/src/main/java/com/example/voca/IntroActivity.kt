@@ -15,6 +15,7 @@ class IntroActivity : AppCompatActivity() {
     lateinit var binding: ActivityIntroBinding
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == Activity.RESULT_OK){
+            @Suppress("DEPRECATION")
             val voc = it.data?.getSerializableExtra("voc") as MyData
             Toast.makeText(this, voc.word + " 추가됨", Toast.LENGTH_SHORT).show()
         }

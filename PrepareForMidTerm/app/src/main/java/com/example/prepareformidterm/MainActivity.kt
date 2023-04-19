@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     val data: ArrayList<EmployeeData> = ArrayList()
     val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
+            @Suppress("DEPRECATION")
             val editedData = it.data?.getSerializableExtra("editedData") as EmployeeData
             val pos = it.data?.getIntExtra("pos", -1)
             if (pos == -1) {

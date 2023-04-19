@@ -14,6 +14,7 @@ class EditActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater)
+        @Suppress("DEPRECATION")
         existingData =  intent.getSerializableExtra("existingData") as EmployeeData
         indexData = intent.getIntExtra("pos", -1)
         setContentView(binding.root)
