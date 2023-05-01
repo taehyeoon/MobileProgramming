@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="182dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/textview_style" />
+
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:columnCount="3"
+        android:rowCount="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5">
+
+        <TextView
+            style="@style/recordListTitleStyle"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:text="날짜" />
+
+        <TextView
+            style="@style/recordListTitleStyle"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="시간" />
+
+        <TextView
+            style="@style/recordListTitleStyle"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:text="장소" />
+
+        <TextView
+            style="@style/recordListTitleStyle"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:text="거리" />
+
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/recordListDataStyle"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:text="23.04.06" />
+
+        <TextView
+            android:id="@+id/startTime"
+            style="@style/recordListDataStyle"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:text="14:22" />
+
+        <TextView
+            android:id="@+id/endTime"
+            style="@style/recordListDataStyle"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:text="16:30" />
+
+        <TextView
+            android:id="@+id/place"
+            style="@style/recordListDataStyle"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:text="광진구" />
+
+        <TextView
+            android:id="@+id/distance"
+            style="@style/recordListDataStyle"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:text="13.5" />
+
+
+    </GridLayout>
+
+    <ImageView
+        android:id="@+id/level"
+        android:layout_width="56dp"
+        android:layout_height="51dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.662"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.145"
+        app:srcCompat="@drawable/run_very_fast" />
+
+    <ImageView
+        android:id="@+id/weather"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.155"
+        app:srcCompat="@drawable/weather_sun" />
+
+    <LinearLayout
+        android:id="@+id/caloryLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.876">
+
+        <TextView
+            style="@style/recordListTitleStyle"
+            android:text="소모 칼로리" />
+
+        <TextView
+            android:id="@+id/calories"
+            style="@style/recordListDataStyle"
+            android:text="2300kcal" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

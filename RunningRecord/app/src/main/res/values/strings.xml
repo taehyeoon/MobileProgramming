@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Running\nRecord</string>
+
+    <string-array name="weather_list">
+        <item>sun</item>
+        <item>cloud</item>
+        <item>fog</item>
+        <item>rain</item>
+        <item>night</item>
+    </string-array>
+</resources>

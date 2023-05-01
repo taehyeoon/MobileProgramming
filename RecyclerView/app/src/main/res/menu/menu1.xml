@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuitem1"
+        android:icon="@android:drawable/btn_star"
+        android:title="linear"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menuitem2"
+        android:icon="@android:drawable/ic_popup_sync"
+        android:title="grid"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menuitem3"
+        android:icon="@android:drawable/star_on"
+        android:title="staggeredGrid"
+        app:showAsAction="always" />
+</menu>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:background="@color/add_page_background"
+    tools:context=".AddActivity">
+
+    <TextView
+        style="@style/title"
+        android:id="@+id/addTitle"
+        android:text="운동 기록 추가" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/tabBtnStyle"
+            android:id="@+id/addBtn"
+            android:text="추가" />
+
+        <Button
+            style="@style/tabBtnStyle"
+            android:id="@+id/recordBtn"
+            android:text="기록 확인"/>
+
+    </LinearLayout>
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="8"
+        android:layout_margin="20dp">
+
+        <!--        날짜 -->
+        <TextView
+            style="@style/AddListTitleStyle"
+            android:id="@+id/dateTitle"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:text="날짜" />
+
+        <EditText
+            style="@style/AddListInputStyle"
+            android:id="@+id/dateText"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:hint="23.04.16" />
+
+        <!--        시간 -->
+        <TextView
+            android:id="@+id/statTimeTitle"
+            style="@style/AddListTitleStyle"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="시작 시간" />
+
+        <EditText
+            style="@style/AddListInputStyle"
+            android:id="@+id/startTimeText"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:hint="14:20"/>
+
+        <TextView
+            android:id="@+id/endTimeTitle"
+            style="@style/AddListTitleStyle"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:text="종료 시간" />
+
+        <EditText
+            style="@style/AddListInputStyle"
+            android:id="@+id/endTimeText"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:hint="15:30"/>
+        <!--        장소 -->
+        <TextView
+            android:id="@+id/placeTitle"
+            style="@style/AddListTitleStyle"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:text="운동 장소" />
+
+        <EditText
+            style="@style/AddListInputStyle"
+            android:id="@+id/placeText"
+            android:layout_row="3"
+            android:layout_column="1"
+            android:hint="광진구"/>
+
+        <!--        거리 -->
+        <TextView
+            android:id="@+id/distanceTitle"
+            style="@style/AddListTitleStyle"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:text="운동 거리(km)" />
+
+        <EditText
+            android:id="@+id/distanceText"
+            style="@style/AddListInputStyle"
+            android:layout_row="4"
+            android:layout_column="1"
+            android:hint="12.6"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <!--        체감 난이도 -->
+        <TextView
+            android:id="@+id/levelTitle"
+            style="@style/AddListTitleStyle"
+            android:layout_row="5"
+            android:layout_column="0"
+            android:text="체감 난이도" />
+
+        <RadioGroup
+            android:id="@+id/level_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="6"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/very_slow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="very_slow" />
+            <RadioButton
+                android:id="@+id/slow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="slow" />
+            <RadioButton
+                android:id="@+id/normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="normal" />
+            <RadioButton
+                android:id="@+id/fast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fast" />
+            <RadioButton
+                android:id="@+id/very_fast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="very_fast" />
+        </RadioGroup>
+
+        <!--        날씨 -->
+        <TextView
+            android:id="@+id/weatherTitle"
+            style="@style/AddListTitleStyle"
+            android:layout_row="7"
+            android:layout_column="0"
+            android:text="날씨" />
+
+        <Spinner
+            style="@style/AddListInputStyle"
+            android:id="@+id/weatherSpinner"
+            android:layout_row="7"
+            android:layout_column="1"
+            android:spinnerMode="dropdown" />
+    </GridLayout>
+
+    <Button
+        style="@style/tabBtnStyle"
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="저장" />
+
+</LinearLayout>

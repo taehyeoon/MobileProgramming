@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<!--    높이를 wrap으로 하지 않고 parent로 하면 한 화면에 하나의 요소밖에 안보임-->
+<!--    따라서 컨텐츠 크기만큼만 자리를 차지하도록 wrap으로 설정해야함-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textview_style"
+        android:padding="15dp"
+        android:layout_margin="15dp"
+        android:text="TextView" />
+</LinearLayout>

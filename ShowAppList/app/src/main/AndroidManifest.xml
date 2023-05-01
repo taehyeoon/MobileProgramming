@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<!-- intent-filter 태그 내부에
+        <category android:name="android.intent.category.HOME" />
+        이 태그를 추가하면 홈버튼을 누를 때, 해당 액티비티를 실행 할지 물어본다
+-->
+    <permission
+        android:name="com.example.applists"
+        android:description="@string/permdescription"
+        android:label="@string/app_name"
+        android:protectionLevel="dangerous" />
+
+    <queries>
+        <intent>
+
+            <!-- MAIN이라는 action 정보를 가지고 있는 액티비티를 찾으려고 한다 -->
+            <action android:name="android.intent.action.MAIN" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ShowAppList"
+        tools:targetApi="31">
+        <!-- android:exported="true" 이면 다른 앱이서 이 액티비티를 실행 할 수 있다-->
+        <activity
+            android:name=".SecondActivity"
+            android:exported="true"
+            android:permission="com.example.applists">
+            <intent-filter>
+                <action android:name="com.example.applists"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
