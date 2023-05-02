@@ -127,6 +127,10 @@ obj/
 *.iws
 /out/
 
+# custom-ignore all idea folder
+**/.idea/
+
+
 # User-specific configurations
 .idea/caches/
 .idea/libraries/
