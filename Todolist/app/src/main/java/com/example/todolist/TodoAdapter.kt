@@ -33,7 +33,8 @@ class TodoAdapter(var items:ArrayList<TodoItem>)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.contentText.text = items[position].content
-        holder.binding.dateTimeText.text = items[position].dateTime
+        holder.binding.dateTimeText.text =
+            "${items[position].year}/ ${(items[position].month + 1)}/ ${items[position].day}"
         holder.binding.priorityText.text = items[position].priority.toString()
     }
 }

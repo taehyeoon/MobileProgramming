@@ -19,8 +19,11 @@ interface TodoDAO {
     @Query("Select * from Tododb")
     fun getAllRecord(): List<TodoItem>
 
-    @Query("Select * from Tododb where dateTime = :dateTime")
-    fun findTodoItem(dateTime: String) : List<TodoItem>
+    @Query("Delete from Tododb")
+    fun deleteAllRecord()
+
+//    @Query("Select * from Tododb where dateTime = :dateTime")
+//    fun findTodoItem(dateTime: LocalDateTime) : List<TodoItem>
 
 //    @Query("Select * from products where pname like :name")
 //    fun findProduct2(name: String) : List<TodoItem>

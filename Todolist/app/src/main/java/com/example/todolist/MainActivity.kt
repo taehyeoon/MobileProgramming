@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity() {
                 val i = Intent(this@MainActivity, TodolistActivity::class.java)
                 startActivity(i)
             }
+
+            calendarBtn.setOnClickListener {
+                val i = Intent(this@MainActivity, TodolistActivity::class.java)
+                startActivity(i)
+            }
         }
 
     }

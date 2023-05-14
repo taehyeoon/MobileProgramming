@@ -10,6 +10,9 @@ import com.example.todolist.databinding.ActivityTodolistBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.Month
+import java.util.Calendar
 
 class TodolistActivity : AppCompatActivity() {
 
@@ -18,14 +21,32 @@ class TodolistActivity : AppCompatActivity() {
     var recordset = ArrayList<TodoItem>()
     var todoAdapter = TodoAdapter(ArrayList<TodoItem>())
 
+    var year: Int = 0
+    var month: Int = 0
+    var day: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTodolistBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
+//        todoDB.todoDao().deleteAllRecord()
+
+
+
+
+        initDate()
         initRecyclerView()
         initLayout()
+    }
+
+    private fun initDate() {
+        val calendar = Calendar.getInstance()
+        year = calendar.get(Calendar.YEAR)
+        month = calendar.get(Calendar.MONTH)
+        day = calendar.get(Calendar.DAY_OF_MONTH)
     }
 
     private fun initRecyclerView() {
@@ -33,7 +54,7 @@ class TodolistActivity : AppCompatActivity() {
         todoAdapter.itemClickListener = object :TodoAdapter.OnItemClickListener{
             override fun OnItemClick(position: Int) {
                 val data = todoAdapter.items[position]
-                val msg = "${data.content}/ ${data.dateTime}/ ${data.priority}"
+                val msg = "${data.content}/ ${data.year}.${data.month+1}.${data.day}/ ${data.priority}"
                 Toast.makeText(this@TodolistActivity, msg, Toast.LENGTH_SHORT).show()
             }
         }
@@ -52,16 +73,21 @@ class TodolistActivity : AppCompatActivity() {
 
 
         binding.apply {
-            calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-                val msg = "${year}.${month}.${dayOfMonth}"
+            calendarView.setOnDateChangeListener { view, c_year, c_month, c_dayOfMonth ->
+                year = c_year
+                month = c_month
+                day = c_dayOfMonth
+
+                val msg = "${c_year}.${c_month}.${c_dayOfMonth}"
                 Toast.makeText(this@TodolistActivity,msg, Toast.LENGTH_SHORT).show()
             }
 
             insertBtn.setOnClickListener {
                 val content = contentEdit.text.toString()
-                val dateTime = dateTimeEdit.text.toString()
+//                val dateTime = dateTimeEdit.text.toString()
                 val priority = priorityEdit.text.toString().toInt()
-                val item = TodoItem(0, dateTime, content, false, priority)
+//                val localDateTime = LocalDateTime.of(year, month, day, 0,0,0)
+                val item = TodoItem(0, year, month, day, content, false, priority)
                 CoroutineScope(Dispatchers.IO).launch {
                     insert(item)
                 }
