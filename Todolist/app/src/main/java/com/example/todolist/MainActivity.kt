@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         initLayout()
     }
 
+
     private fun initLayout() {
         binding.apply {
             plusTodolistBtn.setOnClickListener {
