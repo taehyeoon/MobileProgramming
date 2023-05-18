@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<!--    sms 메시지를 수신하기 위해서는 전화 기능이 있는 핸드폰이어야 한다
+        telepony라는 기능이 있는 핸드폰에서 설치할 때는 설치가 가능.
+        구글 플레이 서비스 에서 배포될 때, 전화 기능이 없는 핸드폰이면 설치가 안되게 막음
+        false : 무조건 설치 가능
+        true : 통화 기능이 없는 경우 설치를 못하게 함-->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="true"/>
+
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BroadcastApp"
+        tools:targetApi="31">
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
