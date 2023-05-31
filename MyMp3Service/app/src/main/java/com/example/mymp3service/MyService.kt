@@ -1,5 +1,8 @@
 package com.example.mymp3service
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -7,10 +10,35 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.MediaPlayer
 import android.os.IBinder
+import androidx.core.app.NotificationCompat
 
 class MyService : Service() {
     lateinit var song:String
     var player: MediaPlayer?=null
+
+
+    var manager : NotificationManager ?= null
+    val notificationId = 100
+
+    fun makeNotification(){
+        val channel = NotificationChannel("channel1", "mp3Channel", NotificationManager.IMPORTANCE_DEFAULT)
+        manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager?.createNotificationChannel(channel)
+
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        val builder = NotificationCompat.Builder(this, "channel1")
+            .setSmallIcon(R.drawable.baseline_audiotrack_24)
+            .setContentTitle("MP3")
+            .setContentText("MP3 플레이 중...")
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+        val notification = builder.build()
+
+        startForeground(notificationId, notification)
+    }
 
     override fun onBind(intent: Intent): IBinder? {
         return null
@@ -55,9 +83,13 @@ class MyService : Service() {
                 "play" -> {
                     song = intent!!.getStringExtra("song")!!
                     startPlay()
+                    makeNotification()
                 }
                 "stop" -> {
                     stopPlay()
+
+                    // 알림
+                    stopForeground(Service.STOP_FOREGROUND_REMOVE)
                 }
             }
         }
