@@ -1,12 +1,10 @@
 package com.example.getwebdataassignment
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.Toast
-import com.bumptech.glide.Glide
 import com.example.getwebdataassignment.databinding.ActivityMainBinding
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,13 +15,11 @@ class MainActivity : AppCompatActivity() {
 
     var movieData: ArrayList<MovieData> = ArrayList()
     lateinit var binding: ActivityMainBinding
-    val myViewModel: MyViewModel by viewModels()
 
-    val movieListFragment = MovieListFragment()
-    val posterFragment = PosterFragment()
-
-    lateinit var adapter: MyAdapter
-
+    val naverQuery =
+        "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&ie=utf8&query="
+    lateinit var originAdapter: MyAdapter
+    lateinit var searchAdapter: MyAdapter
 
     val movieurl = "http://www.cgv.co.kr/movies/?lt=1&ft=0"
     val scope = CoroutineScope(Dispatchers.IO)
@@ -46,70 +42,47 @@ class MainActivity : AppCompatActivity() {
                 val item = MovieData(titles[i].text(), openings[i].text(), "")
                 Log.d("dataasdf", titles[i].text() + " " + openings[i].text())
 
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     movieData.add(item)
-                    adapter.notifyDataSetChanged()
+                    originAdapter.notifyDataSetChanged()
                 }
 
             }
         }
         binding.recyclerView.layoutManager =
             LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-        adapter = MyAdapter(movieData)
+        originAdapter = MyAdapter(movieData)
         Log.d("data Num", movieData.size.toString())
-        adapter.itemClickListener = object : MyAdapter.OnItemClickListener {
+        originAdapter.itemClickListener = object : MyAdapter.OnItemClickListener {
             override fun OnItemClick(data: MovieData, pos: Int) {
-                Toast.makeText(this@MainActivity, "clicked", Toast.LENGTH_SHORT).show()
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(naverQuery + data.title))
+                startActivity(intent)
             }
         }
 
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = originAdapter
+
+
+
+        binding.apply {
+            searchBtn.setOnClickListener {
+                if(editText.text.isNotEmpty()){
+                    val tempArr = ArrayList<MovieData>()
+                    for(x in movieData){
+                        if(x.title.contains(editText.text)){
+                            tempArr.add(x)
+                        }
+                    }
+
+
+                    searchAdapter = MyAdapter(tempArr)
+
+                    recyclerView.adapter = searchAdapter
+                }else{
+                    recyclerView.adapter = originAdapter
+                }
+            }
+        }
+
     }
-
 }
-//        binding.chartBtn.setOnClickListener {
-//            val fragment = supportFragmentManager.beginTransaction()
-//            fragment.replace(R.id.frameLayout, movieListFragment)
-//            fragment.commit()
-//        }
-
-//        getMovies()
-//        getOpening()
-//        val imageView = binding.imageView
-//        val imageUrl = "https://img.cgv.co.kr/Movie/Thumbnail/Poster/000086/86883/86883_320.jpg"
-
-//        Glide.with(this)
-//            .load(imageUrl)
-//            .into(imageView)
-
-
-//    private fun getOpening() {
-//        scope.launch {
-//            val doc = Jsoup.connect(movieurl).get()
-//            val openings = doc.select("span.txt-info")
-//
-//            for(opening in openings){
-//                openingsText += opening.select("strong").text().toString() + "\n"
-//            }
-//
-//            withContext(Dispatchers.Main){
-//                binding.singers.text = openingsText
-//            }
-//        }
-//    }
-
-//    private fun getMovies() {
-//        scope.launch {
-//            val doc = Jsoup.connect(movieurl).get()
-//            val moviesTitles = doc.select("div.box-contents>a")
-//
-//            for(title in moviesTitles){
-//                titlesText += title.text().toString() + "\n"
-//            }
-//
-//            withContext(Dispatchers.Main){
-//                binding.titles.text = titlesText
-//            }
-//        }
-//    }
-
